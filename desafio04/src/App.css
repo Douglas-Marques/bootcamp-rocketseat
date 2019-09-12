@@ -1,0 +1,9 @@
+body {
+  position: relative;
+  margin: 0 auto;
+  width: 1024px;
+
+  font-family: Helvetica, Arial, sans-serif;
+
+  background: #f2f2f2;
+}

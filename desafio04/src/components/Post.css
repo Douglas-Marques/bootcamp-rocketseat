@@ -1,15 +1,19 @@
-.post-perfil {
+.post {
   position: relative;
-  top: 0;
+  top: -30px;
+  margin-bottom: 30px;
+  background: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.133916);
+  border-radius: 4px;
+}
+
+.post > .post-perfil {
+  position: relative;
+  top: 30px;
   left: 10px;
   width: 30px;
   height: 30px;
   border-radius: 100%;
-}
-
-.post {
-  position: relative;
-  top: -30px;
 }
 
 .post > .post-name {
@@ -40,9 +44,7 @@
 }
 
 hr {
-  position: relative;
-  top: 0;
-  width: 660px;
+  width: 640px;
   border: 0;
   height: 1px;
   background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);

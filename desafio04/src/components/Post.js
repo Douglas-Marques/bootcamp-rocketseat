@@ -15,14 +15,14 @@ class Post extends Component {
   render() {
     return (
       <>
-        <img src={fotoPerfil} alt="Foto de perfil" className="post-perfil" />
         <div className="post">
+          <img src={fotoPerfil} alt="Foto de perfil" className="post-perfil" />
           <div className="post-name">{this.state.post.author.name}</div>
           <div className="post-date">{this.state.post.date}</div>
           <div className="post-content">{this.state.post.content}</div>
+          <hr />
+          {this.state.post.comments.map(comment => <Comment key={comment.id} data={comment} />)}
         </div>
-        <hr />
-        {this.state.post.comments.map(comment => <Comment key={comment.id} data={comment} />)}
       </>
     )
   }

@@ -11,6 +11,10 @@ export const Form = styled.form`
     padding: 10px 15px;
     border-radius: 4px;
     font-size: 16px;
+
+    &.error {
+      border-color: red;
+    }
   }
 `;
 
@@ -70,6 +74,7 @@ export const List = styled.ul`
     a {
       color: #7159c1;
       text-decoration: center;
+      margin-right: 10px;
     }
   }
 `;

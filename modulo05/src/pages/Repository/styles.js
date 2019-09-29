@@ -42,6 +42,27 @@ export const Owner = styled.header`
   }
 `;
 
+export const Icons = styled.div`
+  margin-top: 15px;
+  span {
+    margin-right: 10px;
+  }
+`;
+
+export const Buttons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  div {
+    margin-top: 10px;
+    margin-right: 9px;
+  }
+  span {
+    margin-top: 15px;
+    margin-right: 10px;
+  }
+`;
+
 export const IssueList = styled.ul`
   padding-top: 30px;
   margin-top: 30px;

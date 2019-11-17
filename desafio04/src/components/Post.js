@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Post.css'
-import fotoPerfil from '../assets/perfil.png'
 import Comment from './Comment'
 
 class Post extends Component {
@@ -16,7 +15,7 @@ class Post extends Component {
     return (
       <>
         <div className="post">
-          <img src={fotoPerfil} alt="Foto de perfil" className="post-perfil" />
+          <img src={this.state.post.author.avatar} alt="Foto de perfil" className="post-perfil" />
           <div className="post-name">{this.state.post.author.name}</div>
           <div className="post-date">{this.state.post.date}</div>
           <div className="post-content">{this.state.post.content}</div>

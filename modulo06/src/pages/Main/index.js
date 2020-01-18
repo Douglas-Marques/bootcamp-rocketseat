@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Keyboard, ActivityIndicator } from 'react-native';
+import { Keyboard, ActivityIndicator, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '../../services/api';
@@ -19,6 +19,12 @@ import {
   ProfileButtonText,
 } from './Styles';
 
+const styles = StyleSheet.create({
+  error: {
+    borderColor: 'red',
+  },
+});
+
 export default class Main extends Component {
   constructor(props) {
     super(props);
@@ -26,6 +32,7 @@ export default class Main extends Component {
       newUser: '',
       users: [],
       loading: false,
+      error: false,
     };
   }
 
@@ -45,22 +52,36 @@ export default class Main extends Component {
   handleAddUser = async () => {
     const { newUser, users } = this.state;
 
+    if (!newUser) {
+      this.setState({
+        error: true,
+      });
+      return;
+    }
+
     this.setState({ loading: true });
+    try {
+      const response = await api.get(`/users/${newUser}`);
 
-    const response = await api.get(`/users/${newUser}`);
+      const data = {
+        name: response.data.name,
+        login: response.data.login,
+        bio: response.data.bio,
+        avatar: response.data.avatar_url,
+      };
 
-    const data = {
-      name: response.data.name,
-      login: response.data.login,
-      bio: response.data.bio,
-      avatar: response.data.avatar_url,
-    };
-
-    this.setState({
-      users: [...users, data],
-      newUser: '',
-      loading: false,
-    });
+      this.setState({
+        users: [...users, data],
+        newUser: '',
+        loading: false,
+        error: false,
+      });
+    } catch (e) {
+      this.setState({
+        loading: false,
+        error: true,
+      });
+    }
 
     Keyboard.dismiss();
   };
@@ -76,7 +97,7 @@ export default class Main extends Component {
   };
 
   render() {
-    const { newUser, users, loading } = this.state;
+    const { newUser, users, loading, error } = this.state;
 
     return (
       <Container>
@@ -89,6 +110,7 @@ export default class Main extends Component {
             onChangeText={text => this.setState({ newUser: text })}
             returnKeyType="send"
             onSubmitEditing={this.handleAddUser}
+            style={error && styles.error}
           />
           <SubmitButton loading={loading} onPress={this.handleAddUser}>
             {loading ? (

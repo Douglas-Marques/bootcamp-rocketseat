@@ -28,6 +28,8 @@ module.exports = {
     'prettier/prettier': 'error',
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     'import/prefer-default-export': 'off',
-    'react/prefer-stateless-function': 'off'
+    'react/prefer-stateless-function': 'off',
+    'no-param-reassign': 'off',
+    'no-console': ['error', { allow: ['tron'] }]
   },
 };
